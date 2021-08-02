@@ -34,9 +34,26 @@ The simulator can also be executed by running the docker image and then followin
 To use a local copy of ArduPilot follow these steps:
 * Clone the Project
 * Install the [pre-requisites](https://github.com/DependableSystemsLab/stealthy-attacks/tree/master/Simulator/ardupilot-attack-version/Tools/environment_install)
+* Install cmake (the version of cmake must be higher than 3.14)
+```bash
+sudo apt install build-essential git -y
+git clone https://github.com/Kitware/CMake/ ~/CMake ; cd ~/CMake
+sudo apt-get install libssl-dev -y
+./bootstrap && make && sudo make install
+```
 * Install setup files
 ```bash
 ./setup.sh
+```
+* Install SITL dependencies
+```bash
+sudo apt-get install python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml -y
+pip3 install PyYAML mavproxy pygame --user
+echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
+```
+* Add symbolic link
+```bash
+ln -s /path/to/pid-piper /pid-pipe
 ```
 * Run ardupilot 
 ```bash
