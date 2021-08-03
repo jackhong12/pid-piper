@@ -34,8 +34,9 @@ The simulator can also be executed by running the docker image and then followin
 To use a local copy of ArduPilot follow these steps:
 * Clone the Project
 * Install the [pre-requisites](https://github.com/DependableSystemsLab/stealthy-attacks/tree/master/Simulator/ardupilot-attack-version/Tools/environment_install)
-* Install cmake (the version of cmake must be higher than 3.14)
+* Re-install cmake (the version of cmake must be higher than 3.14)
 ```bash
+sudo apt-get remove --purge cmake
 sudo apt install build-essential git -y
 git clone https://github.com/Kitware/CMake/ ~/CMake ; cd ~/CMake
 sudo apt-get install libssl-dev -y
@@ -53,7 +54,7 @@ echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
 ```
 * Add symbolic link
 ```bash
-ln -s /path/to/pid-piper /pid-pipe
+sudo ln -s /path/to/pid-piper /pid-pipe
 ```
 * Run ardupilot 
 ```bash
@@ -61,6 +62,23 @@ cd simulator/ArduCopter
 ../Tools/autotest/sim_vehicle.py --console --map
 ```
 Follow the steps given [here](http://ardupilot.org/dev/docs/copter-sitl-mavproxy-tutorial.html) to setup the build environment. 
+
+### Optional
+* Install valgrind
+```bash
+sudo apt-get install -y valgrind
+```
+
+* Install osd
+```bash
+suod apt-get install libsfml-dev -y
+```
+
+* Run ardupilot
+```bash
+cd simulator/ArduCopter
+../Tools/autotest/sim_vehicle.py --console --map --callgrind --osd
+```
 
 ## Launch Missions
 To run a mission, use this command:
