@@ -492,6 +492,9 @@ def build(bld):
         cxxflags=['-include', 'ap_config.h'],
     )
 
+    # FIXME: Find a better way to add C++ compiler flags.
+    bld.env.append_value('SHLIB_MARKER', ['-lrt'])
+
     _load_pre_build(bld)
 
     if bld.get_board().with_uavcan:

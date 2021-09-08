@@ -34,6 +34,7 @@ def build(bld):
             'AC_AutoTune',
             'AP_KDECAN',
             'PID_Piper',
+            'SENSE_SHM',
         ],
     )
 

@@ -73,6 +73,8 @@
  */
 
 #include "Copter.h"
+#include "SENSE_SHM/posix_shm.h"
+#include <iostream>
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Copter, &copter, func, rate_hz, max_time_micros)
 
@@ -249,6 +251,8 @@ void Copter::fast_loop()
     // run the attitude controllers
     update_flight_mode();
 
+    shm_probe.leakCommit();
+
     // update home from EKF if necessary
     update_home_from_EKF();
 
@@ -264,6 +268,7 @@ void Copter::fast_loop()
     if (should_log(MASK_LOG_ANY)) {
         Log_Sensor_Health();
     }
+
 }
 
 // rc_loops - reads user input from transmitter/receiver
